@@ -24,7 +24,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
  	5. Perform analyses; exploratory data analysis, text mining, and prediction modeling (see below)
   
 ## Exploratory Data Analysis ##
-1. Create separate datasets for each race. 
+1. Create separate datasets for each racial background. 
 
 	`library(stringr)`
         
@@ -37,6 +37,14 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 	`black = subset(df, subset = df$racial_background == "African American")`
 	
 	`asian = subset(df, subset = df$racial_background == "Asian")`
+2. Create a barplot visualizing the amount of customers by household size and income. Repeat this step for other racial backgrounds.
+
+	`income = c('Less than $25,000', '$25,000 – $39,999', '$40,000 – $59,999', '$60,000 – $74,999', '$75,000 – $99,999', 		'$100,000 – $149,999', '$150,000 – $199,999', '$200,000+')`
+
+	`counts <- table(white$household_income, white$household_size)`
+	
+	`barplot(counts, main="Caucasian Customers by Size and Income",xlab="Household Size", ylab = "Count", 			col=c("darkblue", "darkblue", "red","red", "red", "red", "darkgreen", "darkgreen"), legend = income, beside=TRUE, ylim 		= c(0, 600), args.legend = list(x ='topright', ncol = 2, cex = 0.75))`
+
 	
 
 ## Text Mining ## 
