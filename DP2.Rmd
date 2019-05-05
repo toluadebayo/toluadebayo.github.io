@@ -2,7 +2,6 @@
 ```{r}
 library("lubridate")
 df = read.csv("~/Downloads/DP2_CLEAN.csv")
-table(df$prod_category_id)
 
 df$prod_category[df$prod_category_id %in% c(1001001014)] <- 'Women'
 df$prod_category[df$prod_category_id %in% c(1001001013)] <- 'Sports Fan Apparel'
@@ -39,13 +38,9 @@ df$racial_background[df$racial_background %in% c(2)] <- 'African American'
 df$racial_background[df$racial_background %in% c(3)] <- 'Asian'
 df$racial_background[df$racial_background %in% c(5)] <- 'Other'
 
-table(df$racial_background)
-write.csv(df, "submission.csv", row.names = F) 
 df$event_date = mdy(df$event_date)
 df$month = month(df$event_date)
 df$day = day(df$event_date)
-
-table(df$prod_category)
 ```
 
 ```{r}
@@ -74,12 +69,8 @@ barplot(counts3, main="Asian Customers by Size and Income",
 ```
 
 ```{r}
-#avg spend per demo
-#map 
-#shiny?
 library(tidyverse)
 library(ggplot2)
-#Create dataset
 foo <- as.data.frame(table(black$household_income, black$prod_totprice))
 names(foo) = c("Income", "Price", "Freq")
 foo$Price = as.numeric(as.character(foo$Price))
@@ -96,7 +87,9 @@ ggplot(asian, aes(x=prod_totprice)) + geom_histogram(binwidth = 2, aes(fill = ..
 
 ggplot(white, aes(x=as.numeric(month), y=prod_totprice, colour=household_income, fill=household_income)) + geom_area() + scale_x_continuous(lim = c(1,12), breaks = seq(0,12,1)) + ggtitle("Caucasian Customers: Total Spend per Month") + xlab("Month") + ylab("Price Total") + scale_y_continuous(lim = c(0,40000), breaks = seq(0,40000,5000))
 
-tt = white %>% select(4,9,13)
+ggplot(black, aes(x=as.numeric(month), y=prod_totprice, colour=household_income, fill=household_income)) + geom_area() + scale_x_continuous(lim = c(1,12), breaks = seq(0,12,1)) + ggtitle("African-American Customers: Total Spend per Month") + xlab("Month") + ylab("Price Total") + scale_y_continuous(lim = c(0,5000), breaks = seq(0,5000,1000))
+
+ggplot(asian, aes(x=as.numeric(month), y=prod_totprice, colour=household_income, fill=household_income)) + geom_area() + scale_x_continuous(lim = c(1,12), breaks = seq(0,12,1)) + ggtitle("Asian Customers: Total Spend per Month") + xlab("Month") + ylab("Price Total") + scale_y_continuous(lim = c(0,3500), breaks = seq(0,3500,1000))
 ```
 
 
