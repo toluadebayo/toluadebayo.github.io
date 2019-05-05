@@ -25,11 +25,15 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
   
 ## Exploratory Data Analysis ##
 1. Create separate datasets for each race. 
-			'clap
+
+	`library(stringr)`
+	
+	library(tidyverse)
+	library(ggplot2)
+
 	white = subset(df, subset = df$racial_background == "Caucasian")
 	black = subset(df, subset = df$racial_background == "African American")
-asian = subset(df, subset = df$racial_background == "Asian")
-
+	asian = subset(df, subset = df$racial_background == "Asian")`
 
 ## Text Mining ## 
 
