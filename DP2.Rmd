@@ -1,0 +1,191 @@
+
+```{r}
+library("lubridate")
+df = read.csv("~/Downloads/DP2_CLEAN.csv")
+table(df$prod_category_id)
+
+df$prod_category[df$prod_category_id %in% c(1001001014)] <- 'Women'
+df$prod_category[df$prod_category_id %in% c(1001001013)] <- 'Sports Fan Apparel'
+df$prod_category[df$prod_category_id %in% c(1001001010)] <- 'Men'
+df$prod_category[df$prod_category_id %in% c(1001001007)] <- 'Intimates & Sleepwear'
+df$prod_category[df$prod_category_id %in% c(1001001005)] <- 'Girls'
+df$prod_category[df$prod_category_id %in% c(1001001002)] <- 'Baby & Toddler'
+
+df$census_region[df$census_region %in% c(1)] <- 'North East'
+df$census_region[df$census_region %in% c(2)] <- 'North Central'
+df$census_region[df$census_region %in% c(3)] <- 'South'
+df$census_region[df$census_region %in% c(4)] <- 'West'
+
+df$household_size[df$household_size %in% c(1)] <- '1 person'
+df$household_size[df$household_size %in% c(2)] <- '2 people'
+df$household_size[df$household_size %in% c(3)] <- '3 people'
+df$household_size[df$household_size %in% c(4)] <- '4 people'
+df$household_size[df$household_size %in% c(5)] <- '5/5+ people'
+
+#Lower-income 
+df$household_income[df$household_income %in% c(11)] <- 'Less than $25,000'
+df$household_income[df$household_income %in% c(12)] <- '$25,000 – $39,999'
+#Middle-income
+df$household_income[df$household_income %in% c(13)] <- '$40,000 – $59,999'
+df$household_income[df$household_income %in% c(14)] <- '$60,000 – $74,999'
+df$household_income[df$household_income %in% c(15)] <- '$75,000 – $99,999'
+df$household_income[df$household_income %in% c(16)] <- '$100,000 – $149,999'
+#Upper-income
+df$household_income[df$household_income %in% c(17)] <- '$150,000 – $199,999'
+df$household_income[df$household_income %in% c(18)] <- '$200,000+'
+
+df$racial_background[df$racial_background %in% c(1)] <- 'Caucasian'
+df$racial_background[df$racial_background %in% c(2)] <- 'African American'
+df$racial_background[df$racial_background %in% c(3)] <- 'Asian'
+df$racial_background[df$racial_background %in% c(5)] <- 'Other'
+
+table(df$racial_background)
+write.csv(df, "submission.csv", row.names = F) 
+df$event_date = mdy(df$event_date)
+df$month = month(df$event_date)
+df$day = day(df$event_date)
+
+table(df$prod_category)
+```
+
+```{r}
+library(stringr)
+library(rebus)
+
+white = subset(df, subset = df$racial_background == "Caucasian")
+black = subset(df, subset = df$racial_background == "African American")
+asian = subset(df, subset = df$racial_background == "Asian")
+income = c('Less than $25,000', '$25,000 – $39,999', '$40,000 – $59,999', '$60,000 – $74,999', '$75,000 – $99,999', '$100,000 – $149,999', '$150,000 – $199,999', '$200,000+')
+
+counts <- table(white$household_income, white$household_size)
+barplot(counts, main="Caucasian Customers by Size and Income",
+  xlab="Household Size", ylab = "Count", col=c("darkblue", "darkblue", "red","red", "red", "red", "darkgreen", "darkgreen"),
+  legend = income, beside=TRUE, ylim = c(0, 600), args.legend = list(x ='topright', ncol = 2, cex = 0.75))
+
+counts2 <- table(black$household_income, black$household_size)
+barplot(counts2, main="African-American Customers by Size and Income",
+  xlab="Household Size", ylab = "Count", col=c("darkblue", "darkblue", "red","red", "red", "red", "darkgreen", "darkgreen"),
+  legend = income, beside=TRUE, ylim = c(0, 130), args.legend = list(x ='topright', ncol = 2, cex = 0.75))
+
+counts3 <- table(asian$household_income, asian$household_size)
+barplot(counts3, main="Asian Customers by Size and Income",
+  xlab="Household Size", ylab = "Count", col=c("darkblue", "darkblue", "red","red", "red", "red", "darkgreen", "darkgreen"),
+  legend = income, beside=TRUE, ylim = c(0, 80), args.legend = list(x ='topright', ncol = 2, cex = 0.75))
+```
+
+```{r}
+#avg spend per demo
+#map 
+#shiny?
+library(tidyverse)
+library(ggplot2)
+#Create dataset
+foo <- as.data.frame(table(black$household_income, black$prod_totprice))
+names(foo) = c("Income", "Price", "Freq")
+foo$Price = as.numeric(as.character(foo$Price))
+foo$Sum = with(foo,Price*Freq)
+foo = subset(foo, subset= foo$Sum > 0)
+spend = as.data.frame(aggregate(foo$Sum, by=list(Category=foo$Income), FUN=sum))
+spend$Class = c("Middle", "Upper", "Upper", "Lower", "Middle", "Middle", "Middle", "Lower")
+
+ggplot(white, aes(x=prod_totprice)) + geom_histogram(binwidth = 2, aes(fill = ..count..)) + ggtitle("Distribution of Product Prices for White Customers") + xlab("Price Points") + ylab("Count") + scale_x_continuous(lim = c(0,100), breaks = seq(0,100,5))
+
+ggplot(black, aes(x=prod_totprice)) + geom_histogram(binwidth = 2, aes(fill = ..count..)) + ggtitle("Distribution of Product Prices for African-American Customers") + xlab("Price Points") + ylab("Count") + scale_x_continuous(lim = c(0,100), breaks = seq(0,100,5))
+
+ggplot(asian, aes(x=prod_totprice)) + geom_histogram(binwidth = 2, aes(fill = ..count..)) + ggtitle("Distribution of Product Prices for Asian Customers") + xlab("Price Points") + ylab("Count") + scale_x_continuous(lim = c(0,100), breaks = seq(0,100,5))
+
+ggplot(white, aes(x=as.numeric(month), y=prod_totprice, colour=household_income, fill=household_income)) + geom_area() + scale_x_continuous(lim = c(1,12), breaks = seq(0,12,1)) + ggtitle("Caucasian Customers: Total Spend per Month") + xlab("Month") + ylab("Price Total") + scale_y_continuous(lim = c(0,40000), breaks = seq(0,40000,5000))
+
+tt = white %>% select(4,9,13)
+```
+
+
+```{r}
+library("tm")
+library(wordcloud)
+library(topicmodels)
+library(tidytext)
+library(dplyr)
+library(stringr)
+
+colors = c("pink", "black", "white")
+prod_type = c("shirt", "dress", "pant", "legging", "bra", "top", "sock", "hoodie", "sweatshirt", "sweater", "vest", "underwear", "tank", "crewneck", "hat", "beanie", "scarf", "jacket", "short", "skirt", "jumpsuit", "lingerie", "romper", "belt")
+df$prod_name = tolower(df$prod_name)
+
+prod = data.frame(nrow = 11398)
+for (i in 1:24){
+  prod = as.numeric(str_detect(df$prod_name, prod_type[i])) %>% data.frame(prod)
+  print(prod)
+}
+prod = prod[,1:24]
+names(prod) = c("belt", "romper", "lingerie", "jumpsuit", "skirt", "short", "jacket", "scarf", "beanie", "hat", "crewneck", "tank", "underwear", "vest", "sweater", "sweatshirt", "hoodie", "sock", "top", "bra", "legging", "pant", "dress", "shirt")
+q = colSums(prod)
+gg = data.frame(Word = factor(names(q), levels = names(q)), Count = (as.vector(q) / 11398) * 100)
+ggg <- gg[order(gg$Count,decreasing = TRUE),]
+barplot(ggg$Count, names = ggg$Word, ylab = "Percent (%)", main = "Product Type by % of Total Products", las = 2, ylim=c(0,25), col = rainbow(24))
+
+corp.original = VCorpus(VectorSource(df$prod_name))
+corp = tm_map(corp.original, content_transformer(tolower)) 
+corp = tm_map(corp, removeNumbers)
+corp = tm_map(corp, removeWords, stopwords("SMART"))
+corp = tm_map(corp, removeWords, c("amazon.com", "llc", "size", "amazon"))
+corp = tm_map(corp, stripWhitespace)
+corp = tm_map(corp, removePunctuation) 
+dtm = DocumentTermMatrix(corp)
+dtms = removeSparseTerms(dtm, .97)
+dtms = as.matrix(dtm)
+word.freq = colSums(dtms)
+word.freq = sort(word.freq, decreasing=T)
+top = data.frame(Word = factor(names(word.freq[1:30]), levels = names(word.freq[1:30])), Count = as.vector(word.freq[1:30]))
+barplot(top$Count, names = top$Word, ylab = "Count", main = "Top 30 Words According to Product Name", las = 2, col = rainbow(30))
+
+
+```
+
+```{r}
+#white
+df$white = df$racial_background == "Caucasian"
+corr = cor(df$white, dtms)
+corr = abs(corr)
+top50 = order(corr, decreasing=T)[1:50]
+top50words = colnames(corr)[top50]
+top50words
+foo = as.data.frame(cbind(white = df$white, dtms[,top50words]))
+model = glm(white ~., foo, family=binomial)
+summary(model)
+coef = coef(model)[-1]
+positive.terms = coef[coef>0]
+top.positive = sort(positive.terms,decreasing=T)[1:10]
+wordcloud(names(top.positive)[1:5], as.vector(top.positive)[1:5], random.order=FALSE, rot.per=0.35, use.r.layout=FALSE, colors= brewer.pal(8, "Dark2"))
+
+#black
+df$black = df$racial_background == "African-American"
+corr2 = cor(df$black, dtms)
+corr2 = abs(corr2)
+top50b = order(corr2, decreasing=T)[1:50]
+top50wordsb = colnames(corr2)[top50b]
+top50wordsb
+foo2 = as.data.frame(cbind(black = df$black, dtms[,top50wordsb]))
+model2 = glm(black ~., foo2, family=binomial)
+summary(model2)
+coef2 = coef(model2)[-1]
+positive.terms2 = coef2[coef2>0]
+top.positive2 = sort(positive.terms2,decreasing=T)[1:10]
+wordcloud(names(top.positive2)[1:6], as.vector(top.positive2)[1:6], random.order=FALSE, rot.per=0.35, use.r.layout=FALSE, colors= brewer.pal(8, "Dark2"))
+
+#asian
+df$asian = df$racial_background == "Asian"
+corr3 = cor(df$asian, dtms)
+corr3 = abs(corr3)
+top50c = order(corr3, decreasing=T)[1:50]
+top50wordsc = colnames(corr3)[top50c]
+top50wordsc
+foo3 = as.data.frame(cbind(asian = df$asian, dtms[,top50wordsc]))
+model3 = glm(asian ~., foo3, family=binomial)
+summary(model3)
+coef3 = coef(model3)[-1]
+positive.terms3 = coef3[coef3>0]
+top.positive3 = sort(positive.terms3,decreasing=T)[1:10]
+wordcloud(names(top.positive3), as.vector(top.positive3), random.order=FALSE, rot.per=0.35, use.r.layout=FALSE, colors= brewer.pal(8, "Dark2"))
+```
+
