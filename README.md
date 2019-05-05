@@ -1,5 +1,3 @@
-+ theme: jekyll-theme-architect
-
 # Which product type within the apparel product category do Amazon customers shop from the most in 2017?
 
 ## Data ##
