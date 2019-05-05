@@ -18,15 +18,18 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 ## Methodology ##
 
   1. Retrieve data from WRDS 
-  2. Clean data using Tableau Prep 
-  3. Import data into R 
-  4. Transform all ComScore common values into descriptions 
-  4. Perform analyses; exploratory data analysis, text mining, and prediction modeling (see below)
+ 	2. Clean data using Tableau Prep 
+ 	3. Import data into R 
+ 	4. Transform all ComScore common values into descriptions 
+ 	5. Perform analyses; exploratory data analysis, text mining, and prediction modeling (see below)
   
 ## Exploratory Data Analysis ##
-Here is the code for my visualizations:
+1. Create separate datasets for each race. 
+			'clap
+	white = subset(df, subset = df$racial_background == "Caucasian")
+	black = subset(df, subset = df$racial_background == "African American")
+asian = subset(df, subset = df$racial_background == "Asian")
 
-<''code''>
 
 ## Text Mining ## 
 
