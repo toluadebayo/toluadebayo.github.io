@@ -27,6 +27,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 1. Create separate datasets for each race. 
 
 	`library(stringr)`
+        
 	`library(tidyverse)`
 	`library(ggplot2)`
 	`white = subset(df, subset = df$racial_background == "Caucasian")`
