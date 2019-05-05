@@ -45,7 +45,8 @@ df$day = day(df$event_date)
 
 ```{r}
 library(stringr)
-library(rebus)
+library(tidyverse)
+library(ggplot2)
 
 white = subset(df, subset = df$racial_background == "Caucasian")
 black = subset(df, subset = df$racial_background == "African American")
@@ -69,8 +70,6 @@ barplot(counts3, main="Asian Customers by Size and Income",
 ```
 
 ```{r}
-library(tidyverse)
-library(ggplot2)
 foo <- as.data.frame(table(black$household_income, black$prod_totprice))
 names(foo) = c("Income", "Price", "Freq")
 foo$Price = as.numeric(as.character(foo$Price))
