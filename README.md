@@ -15,8 +15,8 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
   - racial_background: race of customer
   -prod_category: product category
   
- ## Methodology ##
- 
+## Methodology ##
+
   1. Retrieve data from WRDS 
   2. Clean data using Tableau Prep 
   3. Import data into R 
@@ -25,6 +25,8 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
   
 ## Exploratory Data Analysis ##
 Here is the code for my visualizations:
+
+<''code''>
 
 ## Text Mining ## 
 
