@@ -43,6 +43,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         ggplot(white, aes(x=prod_totprice)) + geom_histogram(binwidth = 2, aes(fill = ..count..)) + ggtitle("Distribution of 
         Product Prices for White Customers") + xlab("Price Points") + ylab("Count") + scale_x_continuous(lim = c(0,100),
         breaks = seq(0,100,5))
+        
 <img width="699" alt="Screen Shot 2019-05-05 at 10 54 52 PM" src="https://user-images.githubusercontent.com/50304903/57204935-ecc3c880-6f88-11e9-9f1e-1f0283a123bf.png" />
 <img width="698" alt="Screen Shot 2019-05-05 at 10 08 34 PM" src="https://user-images.githubusercontent.com/50304903/57204664-2eec0a80-6f87-11e9-9f31-13167470f42c.png" />
 <img width="698" alt="Screen Shot 2019-05-05 at 10 08 40 PM" src="https://user-images.githubusercontent.com/50304903/57204663-2eec0a80-6f87-11e9-99e9-372c38d5bc54.png" />
@@ -51,6 +52,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         ggplot(white, aes(x=as.numeric(month), y=prod_totprice, colour=household_income, fill=household_income)) + 
         geom_area() + scale_x_continuous(lim = c(1,12), breaks = seq(0,12,1)) + ggtitle("Caucasian Customers: Total Spend per
         Month") + xlab("Month") + ylab("Price Total") + scale_y_continuous(lim = c(0,40000), breaks = seq(0,40000,5000))
+
 <img width="700" alt="Screen Shot 2019-05-05 at 10 13 08 PM" src="https://user-images.githubusercontent.com/50304903/57204660-2e537400-6f87-11e9-924a-5a35ad1eb64b.png" />
 <img width="696" alt="Screen Shot 2019-05-05 at 10 13 23 PM" src="https://user-images.githubusercontent.com/50304903/57204658-2e537400-6f87-11e9-94a1-ae68c715538a.png" />
 <img width="699" alt="Screen Shot 2019-05-05 at 10 13 18 PM" src="https://user-images.githubusercontent.com/50304903/57204659-2e537400-6f87-11e9-851c-d6097caf56c6.png" />
@@ -86,6 +88,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         ggg <- gg[order(gg$Count,decreasing = TRUE),]
         barplot(ggg$Count, names = ggg$Word, ylab = "Percent (%)", main = "Product Type by % of Total Products", las = 2,
         ylim=c(0,25), col = rainbow(24))
+
 <img width="697" alt="Screen Shot 2019-05-05 at 10 13 40 PM" src="https://user-images.githubusercontent.com/50304903/57204657-2e537400-6f87-11e9-8f1d-641262bd3693.png" />
 ### Part Two ###
 1. Clean up the text corpus in the product name column of the dataframe. 
@@ -110,6 +113,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         as.vector(word.freq[1:30]))
         barplot(top$Count, names = top$Word, ylab = "Count", main = "Top 30 Words According to Product Name", las = 2, col
         rainbow(30))
+
 <img width="696" alt="Screen Shot 2019-05-05 at 10 14 00 PM" src="https://user-images.githubusercontent.com/50304903/57204656-2e537400-6f87-11e9-89d0-d928315a7132.png" />
 ## Prediction Modeling ##
 1. Identify the dependent variable of interest (racial background). Compute the correlations between words and the outcome and keep only the 50 most important words. Repeat this step for other racial backgrounds. 
@@ -134,6 +138,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 
         wordcloud(names(top.positive)[1:5], as.vector(top.positive)[1:5], random.order=FALSE, rot.per=0.35,
         use.r.layout=FALSE, colors= brewer.pal(8, "Dark2"))
+
 <img width="702" alt="Screen Shot 2019-05-05 at 10 17 29 PM" src="https://user-images.githubusercontent.com/50304903/57204655-2e537400-6f87-11e9-8592-b959cfccce03.png" />
 <img width="700" alt="Screen Shot 2019-05-05 at 10 17 52 PM" src="https://user-images.githubusercontent.com/50304903/57204654-2e537400-6f87-11e9-80e8-265e2f91680c.png" />
 <img width="698" alt="Screen Shot 2019-05-05 at 10 18 08 PM" src="https://user-images.githubusercontent.com/50304903/57204653-2e537400-6f87-11e9-94ae-7948260b5472.png" />
