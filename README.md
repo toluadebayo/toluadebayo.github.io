@@ -85,10 +85,43 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 ### Part Two ###
 1. Clean up the text corpus in the product name column of the dataframe. 
 
+        corp.original = VCorpus(VectorSource(df$prod_name))
+        corp = tm_map(corp.original, content_transformer(tolower)) 
+        corp = tm_map(corp, removeNumbers)
+        corp = tm_map(corp, removeWords, stopwords("SMART"))
+        corp = tm_map(corp, removeWords, c("amazon.com", "llc", "size", "amazon"))
+        corp = tm_map(corp, stripWhitespace)
+        corp = tm_map(corp, removePunctuation) 
+2. Create a document-term matrix from the cleaned data and remove sparse terms. 
 
+        dtm = DocumentTermMatrix(corp)
+        dtms = removeSparseTerms(dtm, .97)
+        dtms = as.matrix(dtm)
+3. Identify the top 30 words in the document-term matrix and plot them according to frequency in a bar chart.
 
-
+        word.freq = colSums(dtms)
+        word.freq = sort(word.freq, decreasing=T)
+        top = data.frame(Word = factor(names(word.freq[1:30]), levels = names(word.freq[1:30])), Count =
+        as.vector(word.freq[1:30]))
+        barplot(top$Count, names = top$Word, ylab = "Count", main = "Top 30 Words According to Product Name", las = 2, col
+        rainbow(30))
 ## Prediction Modeling ##
+1. Identify you dependent varaible of interest (racial background). Compute the correlations between words and the outcome and keep only the 50 most important words. Repeat this step for the other racial backgrounds. 
+
+        df$white = df$racial_background == "Caucasian"
+        corr = cor(df$white, dtms)
+        corr = abs(corr)
+        top50 = order(corr, decreasing=T)[1:50]
+        top50words = colnames(corr)[top50]
+        top50words
+2. Create a data frame including the dependent varaible and the narrowed list of words. Then run a logistic regression. Repeat this step for the other racial backgrounds. 
+
+        foo = as.data.frame(cbind(white = df$white, dtms[,top50words]))
+        model = glm(white ~., foo, family=binomial)
+        summary(model)
+3. 
+
+
 
 
 ## About Me ##
