@@ -82,8 +82,9 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         ggg <- gg[order(gg$Count,decreasing = TRUE),]
         barplot(ggg$Count, names = ggg$Word, ylab = "Percent (%)", main = "Product Type by % of Total Products", las = 2,
         ylim=c(0,25), col = rainbow(24))
-### Part  ###
-1. 
+### Part Two ###
+1. Clean up the text corpus in the product name column of the dataframe. 
+
 
 
 
