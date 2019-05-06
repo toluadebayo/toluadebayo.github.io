@@ -42,17 +42,17 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         ggplot(white, aes(x=prod_totprice)) + geom_histogram(binwidth = 2, aes(fill = ..count..)) + ggtitle("Distribution of 
         Product Prices for White Customers") + xlab("Price Points") + ylab("Count") + scale_x_continuous(lim = c(0,100),
         breaks = seq(0,100,5))
-<img width="696" alt="Screen Shot 2019-05-05 at 10 08 46 PM" src="https://user-images.githubusercontent.com/50304903/57204662-2eec0a80-6f87-11e9-8473-ba6bdd7bf286.png">
-<img width="698" alt="Screen Shot 2019-05-05 at 10 08 40 PM" src="https://user-images.githubusercontent.com/50304903/57204663-2eec0a80-6f87-11e9-99e9-372c38d5bc54.png">
+<img width="699" alt="Screen Shot 2019-05-05 at 10 54 52 PM" src="https://user-images.githubusercontent.com/50304903/57204935-ecc3c880-6f88-11e9-9f1e-1f0283a123bf.png">
 <img width="698" alt="Screen Shot 2019-05-05 at 10 08 34 PM" src="https://user-images.githubusercontent.com/50304903/57204664-2eec0a80-6f87-11e9-9f31-13167470f42c.png">
+<img width="698" alt="Screen Shot 2019-05-05 at 10 08 40 PM" src="https://user-images.githubusercontent.com/50304903/57204663-2eec0a80-6f87-11e9-99e9-372c38d5bc54.png">
 5. Create a stacked area chart visualizing the total spend per month of each racial background and repeat for other racial backgrounds.
 
         ggplot(white, aes(x=as.numeric(month), y=prod_totprice, colour=household_income, fill=household_income)) + 
         geom_area() + scale_x_continuous(lim = c(1,12), breaks = seq(0,12,1)) + ggtitle("Caucasian Customers: Total Spend per
         Month") + xlab("Month") + ylab("Price Total") + scale_y_continuous(lim = c(0,40000), breaks = seq(0,40000,5000))
-<img width="696" alt="Screen Shot 2019-05-05 at 10 13 23 PM" src="https://user-images.githubusercontent.com/50304903/57204658-2e537400-6f87-11e9-94a1-ae68c715538a.png">
-<img width="699" alt="Screen Shot 2019-05-05 at 10 13 18 PM" src="https://user-images.githubusercontent.com/50304903/57204659-2e537400-6f87-11e9-851c-d6097caf56c6.png">
 <img width="700" alt="Screen Shot 2019-05-05 at 10 13 08 PM" src="https://user-images.githubusercontent.com/50304903/57204660-2e537400-6f87-11e9-924a-5a35ad1eb64b.png">
+<img width="699" alt="Screen Shot 2019-05-05 at 10 13 18 PM" src="https://user-images.githubusercontent.com/50304903/57204659-2e537400-6f87-11e9-851c-d6097caf56c6.png">
+<img width="696" alt="Screen Shot 2019-05-05 at 10 13 23 PM" src="https://user-images.githubusercontent.com/50304903/57204658-2e537400-6f87-11e9-94a1-ae68c715538a.png">
 ## Text Mining ## 
 ### Part One ###
 1. Install packages.
