@@ -119,8 +119,16 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         foo = as.data.frame(cbind(white = df$white, dtms[,top50words]))
         model = glm(white ~., foo, family=binomial)
         summary(model)
-3. 
+3. Which words are most important for predicting racial background? Search for the words with positive coefficients only. (Positive coefficients mean the presence of a word increases the chance of a post being popular.) Repeat this step for the other racial backgrounds. 
 
+        coef = coef(model)[-1]
+        positive.terms = coef[coef>0]
+        top.positive = sort(positive.terms,decreasing=T)[1:10]
+        
+4. Create a wordcloud visualizing the words with positive coefficients. Repeat this step for the other racial backgrounds. 
+
+        wordcloud(names(top.positive)[1:5], as.vector(top.positive)[1:5], random.order=FALSE, rot.per=0.35,
+        use.r.layout=FALSE, colors= brewer.pal(8, "Dark2"))
 
 
 
