@@ -15,14 +15,6 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
   - racial_background: race of customer
   -prod_category: product category
   
-## Methodology ##
-
-  1. Retrieve data from WRDS 
-  2. Clean data using Tableau Prep 
-  3. Import data into R 
-  4. Transform all ComScore common values into descriptions 
-  5. Perform analyses; exploratory data analysis, text mining, and prediction modeling (see below)
-  
 ## Exploratory Data Analysis ##
 1. Install packages.
 
