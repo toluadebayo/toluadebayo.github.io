@@ -13,7 +13,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
   - census_region: census region 
   - household_income: household income
   - racial_background: race of customer
-  -prod_category: product category
+  - prod_category: product category
   
 ## Exploratory Data Analysis ##
 1. Install packages.
