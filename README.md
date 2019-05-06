@@ -44,7 +44,9 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         Product Prices for White Customers") + xlab("Price Points") + ylab("Count") + scale_x_continuous(lim = c(0,100),
         breaks = seq(0,100,5))
 <img width="699" alt="Screen Shot 2019-05-05 at 10 54 52 PM" src="https://user-images.githubusercontent.com/50304903/57204935-ecc3c880-6f88-11e9-9f1e-1f0283a123bf.png" />
+
 <img width="698" alt="Screen Shot 2019-05-05 at 10 08 34 PM" src="https://user-images.githubusercontent.com/50304903/57204664-2eec0a80-6f87-11e9-9f31-13167470f42c.png" />
+
 <img width="698" alt="Screen Shot 2019-05-05 at 10 08 40 PM" src="https://user-images.githubusercontent.com/50304903/57204663-2eec0a80-6f87-11e9-99e9-372c38d5bc54.png" />
 5. Create a stacked area chart visualizing the total spend per month of each racial background and repeat for other racial backgrounds.
 
