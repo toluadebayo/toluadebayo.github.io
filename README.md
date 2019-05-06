@@ -51,8 +51,8 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         geom_area() + scale_x_continuous(lim = c(1,12), breaks = seq(0,12,1)) + ggtitle("Caucasian Customers: Total Spend per
         Month") + xlab("Month") + ylab("Price Total") + scale_y_continuous(lim = c(0,40000), breaks = seq(0,40000,5000))
 <img width="700" alt="Screen Shot 2019-05-05 at 10 13 08 PM" src="https://user-images.githubusercontent.com/50304903/57204660-2e537400-6f87-11e9-924a-5a35ad1eb64b.png">
-<img width="699" alt="Screen Shot 2019-05-05 at 10 13 18 PM" src="https://user-images.githubusercontent.com/50304903/57204659-2e537400-6f87-11e9-851c-d6097caf56c6.png">
 <img width="696" alt="Screen Shot 2019-05-05 at 10 13 23 PM" src="https://user-images.githubusercontent.com/50304903/57204658-2e537400-6f87-11e9-94a1-ae68c715538a.png">
+<img width="699" alt="Screen Shot 2019-05-05 at 10 13 18 PM" src="https://user-images.githubusercontent.com/50304903/57204659-2e537400-6f87-11e9-851c-d6097caf56c6.png">
 ## Text Mining ## 
 ### Part One ###
 1. Install packages.
@@ -133,9 +133,9 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 
         wordcloud(names(top.positive)[1:5], as.vector(top.positive)[1:5], random.order=FALSE, rot.per=0.35,
         use.r.layout=FALSE, colors= brewer.pal(8, "Dark2"))
-<img width="698" alt="Screen Shot 2019-05-05 at 10 18 08 PM" src="https://user-images.githubusercontent.com/50304903/57204653-2e537400-6f87-11e9-94ae-7948260b5472.png">
-<img width="700" alt="Screen Shot 2019-05-05 at 10 17 52 PM" src="https://user-images.githubusercontent.com/50304903/57204654-2e537400-6f87-11e9-80e8-265e2f91680c.png">
 <img width="702" alt="Screen Shot 2019-05-05 at 10 17 29 PM" src="https://user-images.githubusercontent.com/50304903/57204655-2e537400-6f87-11e9-8592-b959cfccce03.png">
+<img width="700" alt="Screen Shot 2019-05-05 at 10 17 52 PM" src="https://user-images.githubusercontent.com/50304903/57204654-2e537400-6f87-11e9-80e8-265e2f91680c.png">
+<img width="698" alt="Screen Shot 2019-05-05 at 10 18 08 PM" src="https://user-images.githubusercontent.com/50304903/57204653-2e537400-6f87-11e9-94ae-7948260b5472.png">
 
 
 
