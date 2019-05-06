@@ -26,7 +26,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         white = subset(df, subset = df$racial_background == "Caucasian")
         black = subset(df, subset = df$racial_background == "African American")
         asian = subset(df, subset = df$racial_background == "Asian")
-3. Create a barplot visualizing the amount of customers by household size and income and repeat for others. Note that the blue bars represent lower-income, red represents the middle-income, and green represents upper-income. 
+3. Create a barplot visualizing the amount of customers by household size and income and repeat for other racial backgrounds. Note that the blue bars represent lower-income, red bars represent the middle-income, and green bars represent upper-income. 
 
         income = c('Less than $25,000', '$25,000 – $39,999', '$40,000 – $59,999', '$60,000 – $74,999', '$75,000 – $99,999',
         '$100,000 – $149,999', '$150,000 – $199,999', '$200,000+')
