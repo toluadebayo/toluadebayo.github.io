@@ -35,10 +35,8 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         col=c("darkblue", "darkblue", "red","red", "red", "red", "darkgreen", "darkgreen"), legend = income, beside=TRUE, ylim
         = c(0, 600), args.legend = list(x ='topright', ncol = 2, cex = 0.75))
         
-<img width="699" alt="Screen Shot 2019-05-05 at 10 05 32 PM" src=Desktop/Screen Shot 2019-05-05 at 10 05 32 PM>
-
+<img width="699" alt="Screen Shot 2019-05-05 at 10 05 32 PM" src="https://user-images.githubusercontent.com/50304903/57205965-39f76880-6f90-11e9-8ca7-c0054f5eff7e.png" /> 
 <img width="700" alt="Screen Shot 2019-05-05 at 10 08 08 PM" src="https://user-images.githubusercontent.com/50304903/57204665-2eec0a80-6f87-11e9-9e2b-abf4b4e4e281.png" />
-
 <img width="701" alt="Screen Shot 2019-05-05 at 10 08 02 PM" src="https://user-images.githubusercontent.com/50304903/57204666-2eec0a80-6f87-11e9-82fe-af035c3c1d14.png"/>
 
 4. Create a histogram visualizing the distribution of price levels for each racial background and repeat for other racial backgrounds. Note that the bars are colored by count. 
