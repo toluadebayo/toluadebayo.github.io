@@ -154,11 +154,11 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
    person, lower-income households are the least prominent. The month with the highest total spend was December and the month
    with the lowest total spend was February. The word with the most positive coefficient was Carhartt, a work clothing brand.
    This means that if a product was from this brand, the customer that bought the product was most likely white. 
- - **Of Amazon's African-American customers:** 2-person, upper-income households are the most prominent customer segment and 
+ - **Of Amazon's African-American customers:** 2-person, upper-income households are the most prominent customer segment and
    1-person, lower-income households are the least prominent. The month with the highest total spend was December and the
    month with the lowest total spend was July. The word with the most positive coefficient was "abdomen". This means that
    black customers shop more for abdomen-realted products than any other race. 
- - **Of Amazon's Asian customers:** 2-person, middle-income households are the most prominent customer segment and 5-person,  
+ - **Of Amazon's Asian customers:** 2-person, middle-income households are the most prominent customer segment and 5-person,
    lower-income households are the least prominent. The month with the highest total spend was December and the month with the
    lowest total spend was September. The word with the most positive coefficient was Portsur, which is a brand that sells only
    one item on Amazon. This means that customers who bought this product are most likely to be Asian.
