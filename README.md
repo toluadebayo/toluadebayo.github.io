@@ -26,7 +26,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         white = subset(df, subset = df$racial_background == "Caucasian")
         black = subset(df, subset = df$racial_background == "African American")
         asian = subset(df, subset = df$racial_background == "Asian")
-3. Create a barplot visualizing the amount of customers by household size and income and repeat for other racial backgrounds. Note that the blue bars represent lower-income, red bars represent the middle-income, and green bars represent upper-income. 
+3. Create a barplot visualizing the amount of customers by household size and income for each racial background. Note that the blue bars represent lower-income, red bars represent the middle-income, and green bars represent upper-income. 
 
         income = c('Less than $25,000', '$25,000 – $39,999', '$40,000 – $59,999', '$60,000 – $74,999', '$75,000 – $99,999',
         '$100,000 – $149,999', '$150,000 – $199,999', '$200,000+')
@@ -38,7 +38,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 <img width="699" alt="Screen Shot 2019-05-05 at 10 05 32 PM" src="https://user-images.githubusercontent.com/50304903/57205965-39f76880-6f90-11e9-8ca7-c0054f5eff7e.png" /> 
 <img width="700" alt="Screen Shot 2019-05-05 at 10 08 08 PM" src="https://user-images.githubusercontent.com/50304903/57204665-2eec0a80-6f87-11e9-9e2b-abf4b4e4e281.png" />
 <img width="701" alt="Screen Shot 2019-05-05 at 10 08 02 PM" src="https://user-images.githubusercontent.com/50304903/57204666-2eec0a80-6f87-11e9-82fe-af035c3c1d14.png"/>
-4. Create a histogram visualizing the distribution of price levels for each racial background and repeat for other racial backgrounds. Note that the bars are colored by count. 
+4. Create a histogram visualizing the distribution of price levels for each racial background. Note that the bars are colored by count. 
 
         ggplot(white, aes(x=prod_totprice)) + geom_histogram(binwidth = 2, aes(fill = ..count..)) + ggtitle("Distribution of 
         Product Prices for White Customers") + xlab("Price Points") + ylab("Count") + scale_x_continuous(lim = c(0,100),
@@ -47,7 +47,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 <img width="699" alt="Screen Shot 2019-05-05 at 10 54 52 PM" src="https://user-images.githubusercontent.com/50304903/57204935-ecc3c880-6f88-11e9-9f1e-1f0283a123bf.png" />
 <img width="698" alt="Screen Shot 2019-05-05 at 10 08 34 PM" src="https://user-images.githubusercontent.com/50304903/57204664-2eec0a80-6f87-11e9-9f31-13167470f42c.png" />
 <img width="698" alt="Screen Shot 2019-05-05 at 10 08 40 PM" src="https://user-images.githubusercontent.com/50304903/57204663-2eec0a80-6f87-11e9-99e9-372c38d5bc54.png" />
-5. Create a stacked area chart visualizing the total spend per month of each racial background and repeat for other racial backgrounds.
+5. Create a stacked area chart visualizing the total spend per month for each racial background. 
 
         ggplot(white, aes(x=as.numeric(month), y=prod_totprice, colour=household_income, fill=household_income)) + 
         geom_area() + scale_x_continuous(lim = c(1,12), breaks = seq(0,12,1)) + ggtitle("Caucasian Customers: Total Spend per
@@ -116,7 +116,7 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 
 <img width="696" alt="Screen Shot 2019-05-05 at 10 14 00 PM" src="https://user-images.githubusercontent.com/50304903/57204656-2e537400-6f87-11e9-89d0-d928315a7132.png" />
 ## Prediction Modeling ##
-1. Identify the dependent variable of interest (racial background). Compute the correlations between words and the outcome and keep only the 50 most important words. Repeat this step for other racial backgrounds. 
+1. Identify the dependent variable of interest (racial background). Compute the correlations between words and the outcome and keep only the 50 most important words. Repeat this step for each racial background. 
 
         df$white = df$racial_background == "Caucasian"
         corr = cor(df$white, dtms)
@@ -124,17 +124,17 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
         top50 = order(corr, decreasing=T)[1:50]
         top50words = colnames(corr)[top50]
         top50words
-2. Create a data frame including the dependent variable and the narrowed list of words. Then run a logistic regression. Repeat this step for the other racial backgrounds. 
+2. Create a data frame including the dependent variable and the narrowed list of words. Then run a logistic regression. Repeat this step for each racial background. 
 
         foo = as.data.frame(cbind(white = df$white, dtms[,top50words]))
         model = glm(white ~., foo, family=binomial)
         summary(model)
-3. Which words are the most important for predicting racial background? Search for the words with positive coefficients only. (Positive coefficients mean the presence of a word increases the chance of a product being bought by a particular racial background.) Repeat this step for the other racial backgrounds. 
+3. Which words are the most important for predicting racial background? Search for the words with positive coefficients only. (Positive coefficients mean the presence of a word increases the chance of a product being bought by a particular racial background.) Repeat this step for each racial background. 
 
         coef = coef(model)[-1]
         positive.terms = coef[coef>0]
         top.positive = sort(positive.terms,decreasing=T)[1:10]
-4. Create a wordcloud visualizing the words with positive coefficients. Repeat this step for the other racial backgrounds. 
+4. Create a wordcloud visualizing the words with positive coefficients. Repeat this step for each racial background. 
 
         wordcloud(names(top.positive)[1:5], as.vector(top.positive)[1:5], random.order=FALSE, rot.per=0.35,
         use.r.layout=FALSE, colors= brewer.pal(8, "Dark2"))
@@ -143,7 +143,26 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 <img width="700" alt="Screen Shot 2019-05-05 at 10 17 52 PM" src="https://user-images.githubusercontent.com/50304903/57204654-2e537400-6f87-11e9-80e8-265e2f91680c.png" />
 <img width="698" alt="Screen Shot 2019-05-05 at 10 18 08 PM" src="https://user-images.githubusercontent.com/50304903/57204653-2e537400-6f87-11e9-94ae-7948260b5472.png" />
 
-
+## Insights ##
+ - **Of Amazon's Caucasian customers:** 2-person, middle-income households are the most prominent customer segment and 1
+   person, lower-income households are the least prominent. The month with the highest total spend was December and the month
+   with the lowest total spend was February. The word with the most positive coefficient was Carhartt, a work clothing brand.
+   This means that if a product was from this brand, the customer that bought the product was most likely white. 
+ - **Of Amazon's African-American customers:** 2-person, upper-income households are the most prominent customer segment and 
+   1-person, lower-income households are the least prominent. The month with the highest total spend was December and the
+   month with the lowest total spend was July. The word with the most positive coefficient was "abdomen". This means that
+   black customers shop more for abdomen-realted products than any other race. 
+ - **Of Amazon's Asian customers:** 2-person, middle-income households are the most prominent customer segment and 5-person,  
+   lower-income households are the least prominent. The month with the highest total spend was December and the month with the
+   lowest total spend was September. The word with the most positive coefficient was Portsur, which is a brand that sells only
+   one item on Amazon. This means that customers who bought this product are most likely to be Asian.
+ - Majority of products sold among all racial backgrounds are within the $10-$20 price range. 
+ - Caucasian customers overwhelmingly spend more than their African-American and Asian counterparts. 
+ - **Which product type within the apparel product category do Amazon customers shop the most in 2017?** Shirts (followed by
+   dresses then tops and shorts).
+ - "Women" is the word that appears the most among all of the product names of the 2017 transactions. Following this is "men",
+   "black", then "shirt".
+ 
 
 
 ## About Me ##
