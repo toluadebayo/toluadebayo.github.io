@@ -144,6 +144,12 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
 <img width="698" alt="Screen Shot 2019-05-05 at 10 18 08 PM" src="https://user-images.githubusercontent.com/50304903/57204653-2e537400-6f87-11e9-94ae-7948260b5472.png" />
 
 ## Insights ##
+ - **Which product type within the apparel product category do Amazon customers shop the most in 2017?** Shirts (followed by
+   dresses then tops and shorts).
+ - "Women" is the word that appears the most among all of the product names of the 2017 transactions. Following this is "men",
+   "black", then "shirt".
+ - Majority of products sold among all racial backgrounds are within the $10-$20 price range. 
+ - Caucasian customers overwhelmingly spend more than their African-American and Asian counterparts. 
  - **Of Amazon's Caucasian customers:** 2-person, middle-income households are the most prominent customer segment and 1
    person, lower-income households are the least prominent. The month with the highest total spend was December and the month
    with the lowest total spend was February. The word with the most positive coefficient was Carhartt, a work clothing brand.
@@ -156,13 +162,9 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
    lower-income households are the least prominent. The month with the highest total spend was December and the month with the
    lowest total spend was September. The word with the most positive coefficient was Portsur, which is a brand that sells only
    one item on Amazon. This means that customers who bought this product are most likely to be Asian.
- - Majority of products sold among all racial backgrounds are within the $10-$20 price range. 
- - Caucasian customers overwhelmingly spend more than their African-American and Asian counterparts. 
- - **Which product type within the apparel product category do Amazon customers shop the most in 2017?** Shirts (followed by
-   dresses then tops and shorts).
- - "Women" is the word that appears the most among all of the product names of the 2017 transactions. Following this is "men",
-   "black", then "shirt".
  
+
+
 
 
 ## About Me ##
