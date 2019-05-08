@@ -148,7 +148,7 @@ top50 = order(corr, decreasing=T)[1:50]
 top50words = colnames(corr)[top50]
 top50words
 ```
-2. Create a data frame including the dependent variable and the narrowed list of words. Then run a logistic regression. Repeat this step for each racial background. 
+2. Create a data frame including the dependent variable and the narrowed list of words. Then run a logistic regression. Repeat this step for each racial background.
 
 ```r
 foo = as.data.frame(cbind(white = df$white, dtms[,top50words]))
