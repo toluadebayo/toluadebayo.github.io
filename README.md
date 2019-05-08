@@ -17,12 +17,11 @@ The dataset used for this project was ComScore Web Behavior: 2017 Transactions, 
   
 ## Exploratory Data Analysis ##
 1. Install packages.
-
-        ```r
-        library(stringr)
-        library(tidyverse)
-        library(ggplot2)
-        ```
+```r
+library(stringr)
+library(tidyverse)
+library(ggplot2)
+```
 2. Create separate datasets for each racial background. 
 
         ```r
