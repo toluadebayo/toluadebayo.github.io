@@ -3,6 +3,9 @@ Can we predict the average basket total of purchases for the next year, for the 
 
 Why this matters: Without knowing the purchasing behaviors of customers, sales may decrease; Lack of shopping personalization can lead to high churn/low retention of customers. Therefore, we must analyze which characteristics of the customer and/or shopping experience can predict purchasing behavior. 
 
+
+***WILL COMPARE RESULTS TO TIME SERIES MODEL***
+
 Data:¶
 - Comscore 2019,2020 data
 - Comscore data available through Wharton Research Data Services (WRDS) represents a sample of US internet users’ internet browsing behavior, purchases, and demographics. 
